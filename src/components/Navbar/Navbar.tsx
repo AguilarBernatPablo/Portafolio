@@ -1,63 +1,72 @@
-export default function Navbar() {
+import { useState } from "react";
+import { Menu, X, Code2 } from "lucide-react";
+
+const navLinks = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Nosotros", href: "#nosotros" },
+  { label: "Proyectos", href: "#proyectos" },
+  { label: "Tecnologías", href: "#tecnologias" },
+  { label: "Contacto", href: "#contacto" },
+];
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleLinkClick = () => setIsOpen(false);
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-4">
-
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-
-          <div className="w-10 h-10 rounded-xl bg-orange-500 flex items-center justify-center font-bold text-black">
-            <span className="text-xl font-black">
-                {"</>"}
+    <header className="fixed top-0 left-0 w-full z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
+      <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
+        <a href="#inicio" className="flex items-center gap-2">
+          <div className="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center text-black">
+            <Code2 className="w-5 h-5" strokeWidth={2.5} />
+          </div>
+          <div className="leading-tight">
+            <span className="text-white font-bold block">
+              NorthCode <span className="text-orange-500">Studio</span>
             </span>
           </div>
+        </a>
 
-          <div>
-            <h1 className="text-xl font-bold text-white">
-              North<span className="text-orange-500">Code</span>
-            </h1>
+        <ul className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="text-zinc-300 hover:text-orange-500 transition-colors text-sm font-medium"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-            <p className="text-xs text-zinc-500">
-              Studio
-            </p>
-          </div>
+        <button
+          className="md:hidden text-white"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+        >
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </nav>
 
-        </div>
-
-        {/* Menú */}
-        <nav className="hidden md:flex items-center gap-8 text-zinc-300">
-
-          <a
-            href="#home"
-            className="hover:text-orange-500 transition-colors duration-300"
-          >
-            Inicio
-          </a>
-
-          <a
-            href="#about"
-            className="hover:text-orange-500 transition-colors duration-300"
-          >
-            Nosotros
-          </a>
-
-          <a
-            href="#projects"
-            className="hover:text-orange-500 transition-colors duration-300"
-          >
-            Proyectos
-          </a>
-
-          <a
-            href="#contact"
-            className="hover:text-orange-500 transition-colors duration-300"
-          >
-            Contacto
-          </a>
-
-        </nav>
-
-      </div>
+      {isOpen && (
+        <ul className="md:hidden flex flex-col gap-1 px-6 pb-6 border-t border-zinc-800">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                onClick={handleLinkClick}
+                className="block py-3 text-zinc-300 hover:text-orange-500 transition-colors text-sm font-medium"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </header>
   );
-}
+};
+
+export default Navbar;
