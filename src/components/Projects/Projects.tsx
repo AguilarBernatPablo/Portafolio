@@ -6,7 +6,7 @@ const Projects = () => {
     <section id="proyectos" className="py-20 px-6 md:px-12 bg-zinc-950">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12 text-center">
-          <span className="text-orange-500 text-sm font-medium tracking-wide uppercase">
+          <span className="text-lime-500 text-sm font-medium tracking-wide uppercase">
             Nuestro trabajo
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
@@ -20,7 +20,7 @@ const Projects = () => {
 
         {projects.length === 0 ? (
           <div className="flex flex-col items-center justify-center border border-zinc-800 rounded-2xl py-16 px-6 bg-zinc-900/40 backdrop-blur-sm text-center">
-            <LuFolderGit2 className="w-10 h-10 text-orange-500 mb-4" />
+            <LuFolderGit2 className="w-10 h-10 text-lime-500 mb-4" />
             <h3 className="text-white text-lg font-semibold">Próximamente</h3>
             <p className="text-zinc-400 mt-2 max-w-md">
               Estamos preparando nuestros primeros proyectos publicados.
@@ -32,7 +32,7 @@ const Projects = () => {
             {projects.map((project) => (
               <article
                 key={project.id}
-                className="group bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-colors duration-300"
+                className="group bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-lime-500/50 transition-colors duration-300"
               >
                 {project.image && (
                   <div className="h-44 overflow-hidden">
@@ -69,7 +69,7 @@ const Projects = () => {
                         href={project.github}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-1.5 text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                        className="flex items-center gap-1.5 text-sm text-zinc-300 hover:text-lime-500 transition-colors"
                       >
                         <LuGithub className="w-4 h-4" /> Código
                       </a>
@@ -79,7 +79,7 @@ const Projects = () => {
                         href={project.demo}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-1.5 text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                        className="flex items-center gap-1.5 text-sm text-zinc-300 hover:text-lime-500 transition-colors"
                       >
                         <LuExternalLink className="w-4 h-4" /> Demo
                       </a>

@@ -9,14 +9,14 @@ const Hero = () => {
       <div className="max-w-6xl mx-auto grid md:grid-cols-[45%_55%] gap-12 items-center w-full">
         <div>
           <div className="inline-flex items-center gap-2 border border-zinc-800 bg-zinc-900/60 rounded-full px-4 py-1.5 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-            <span className="text-orange-500 text-sm font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-lime-500" />
+            <span className="text-lime-500 text-sm font-medium">
               Disponibles para nuevos proyectos
             </span>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">
-            Desarrollo de <span className="text-orange-500">Software</span>{" "}
+            Desarrollo de <span className="text-lime-500">Software</span>{" "}
             para empresas.
           </h1>
 
@@ -29,13 +29,13 @@ const Hero = () => {
           <div className="flex flex-wrap gap-4 mt-8">
             <a
               href="#proyectos"
-              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+              className="bg-lime-500 hover:bg-lime-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
             >
               Ver proyectos
             </a>
             <a
               href="#contacto"
-              className="border border-zinc-700 hover:border-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+              className="border border-zinc-700 hover:border-lime-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
             >
               Contáctanos
             </a>

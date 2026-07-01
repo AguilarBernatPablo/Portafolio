@@ -29,7 +29,7 @@ const About = () => {
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center mb-14">
           <div>
-            <span className="text-orange-500 text-sm font-medium tracking-wide uppercase">
+            <span className="text-lime-500 text-sm font-medium tracking-wide uppercase">
               Sobre nosotros
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 leading-tight">
@@ -49,9 +49,9 @@ const About = () => {
           {services.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
-              className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition-colors duration-300"
+              className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-lime-500/50 transition-colors duration-300"
             >
-              <Icon className="w-6 h-6 text-orange-500 mb-4" />
+              <Icon className="w-6 h-6 text-lime-500 mb-4" />
               <h3 className="text-white font-semibold">{title}</h3>
               <p className="text-zinc-400 text-sm mt-2 leading-relaxed">
                 {description}

@@ -15,7 +15,7 @@ const Contact = () => {
   return (
     <section id="contacto" className="py-24 px-6 md:px-12 bg-zinc-900/40">
       <div className="max-w-2xl mx-auto text-center mb-12">
-        <span className="text-orange-500 text-sm font-medium tracking-wide uppercase">
+        <span className="text-lime-500 text-sm font-medium tracking-wide uppercase">
           Hablemos
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
@@ -35,7 +35,7 @@ const Contact = () => {
           <input
             type="text"
             required
-            className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 transition-colors"
+            className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-lime-500 transition-colors"
             placeholder="Tu nombre"
           />
         </div>
@@ -45,7 +45,7 @@ const Contact = () => {
           <input
             type="email"
             required
-            className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 transition-colors"
+            className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-lime-500 transition-colors"
             placeholder="tucorreo@ejemplo.com"
           />
         </div>
@@ -55,7 +55,7 @@ const Contact = () => {
           <textarea
             required
             rows={4}
-            className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 transition-colors resize-none"
+            className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-lime-500 transition-colors resize-none"
             placeholder="Contanos sobre tu proyecto..."
           />
         </div>
@@ -63,7 +63,7 @@ const Contact = () => {
         <button
           type="submit"
           disabled={status !== "idle"}
-          className="w-full flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 disabled:opacity-60 text-white font-medium py-3 rounded-lg transition-colors"
+          className="w-full flex items-center justify-center gap-2 bg-lime-500 hover:bg-lime-600 disabled:opacity-60 text-white font-medium py-3 rounded-lg transition-colors"
         >
           {status === "idle" && (
             <>

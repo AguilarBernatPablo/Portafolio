@@ -18,12 +18,12 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 w-full z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
         <a href="#inicio" className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center text-black">
+          <div className="w-9 h-9 rounded-lg bg-lime-500 flex items-center justify-center text-black">
             <LuCode className="w-5 h-5" />
           </div>
           <div className="leading-tight">
             <span className="text-white font-bold block">
-              NorthCode <span className="text-orange-500">Studio</span>
+              NorthCode <span className="text-lime-500">Studio</span>
             </span>
           </div>
         </a>
@@ -33,7 +33,7 @@ const Navbar = () => {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-zinc-300 hover:text-orange-500 transition-colors text-sm font-medium"
+                className="text-zinc-300 hover:text-lime-500 transition-colors text-sm font-medium"
               >
                 {link.label}
               </a>
@@ -57,7 +57,7 @@ const Navbar = () => {
               <a
                 href={link.href}
                 onClick={handleLinkClick}
-                className="block py-3 text-zinc-300 hover:text-orange-500 transition-colors text-sm font-medium"
+                className="block py-3 text-zinc-300 hover:text-lime-500 transition-colors text-sm font-medium"
               >
                 {link.label}
               </a>
