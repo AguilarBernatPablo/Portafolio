@@ -3,9 +3,9 @@ import { LuExternalLink, LuFolderGit2, LuGithub } from "react-icons/lu";
 
 const Projects = () => {
   return (
-    <section id="proyectos" className="py-24 px-6 md:px-12 bg-zinc-950">
+    <section id="proyectos" className="py-20 px-6 md:px-12 bg-zinc-950">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-14 text-center">
+        <div className="mb-12 text-center">
           <span className="text-orange-500 text-sm font-medium tracking-wide uppercase">
             Nuestro trabajo
           </span>
@@ -19,11 +19,9 @@ const Projects = () => {
         </div>
 
         {projects.length === 0 ? (
-          <div className="flex flex-col items-center justify-center border border-zinc-800 rounded-2xl py-20 px-6 bg-zinc-900/40 backdrop-blur-sm text-center">
+          <div className="flex flex-col items-center justify-center border border-zinc-800 rounded-2xl py-16 px-6 bg-zinc-900/40 backdrop-blur-sm text-center">
             <LuFolderGit2 className="w-10 h-10 text-orange-500 mb-4" />
-            <h3 className="text-white text-lg font-semibold">
-              Próximamente
-            </h3>
+            <h3 className="text-white text-lg font-semibold">Próximamente</h3>
             <p className="text-zinc-400 mt-2 max-w-md">
               Estamos preparando nuestros primeros proyectos publicados.
               Vuelve pronto para ver el trabajo de NorthCode Studio.
@@ -45,6 +43,7 @@ const Projects = () => {
                     />
                   </div>
                 )}
+
                 <div className="p-6">
                   <h3 className="text-white font-semibold text-lg">
                     {project.title}

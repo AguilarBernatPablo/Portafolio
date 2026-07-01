@@ -28,14 +28,14 @@ const Contact = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="max-w-xl mx-auto bg-zinc-900 border border-zinc-800 rounded-2xl p-8 space-y-5"
+        className="max-w-xl mx-auto bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/60 rounded-2xl p-8 space-y-5 shadow-xl shadow-black/20"
       >
         <div>
           <label className="text-sm text-zinc-400 mb-1.5 block">Nombre</label>
           <input
             type="text"
             required
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 transition-colors"
+            className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 transition-colors"
             placeholder="Tu nombre"
           />
         </div>
@@ -45,7 +45,7 @@ const Contact = () => {
           <input
             type="email"
             required
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 transition-colors"
+            className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 transition-colors"
             placeholder="tucorreo@ejemplo.com"
           />
         </div>
@@ -55,7 +55,7 @@ const Contact = () => {
           <textarea
             required
             rows={4}
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 transition-colors resize-none"
+            className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 transition-colors resize-none"
             placeholder="Contanos sobre tu proyecto..."
           />
         </div>

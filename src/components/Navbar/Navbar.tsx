@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Code2 } from "lucide-react";
+import { LuCode, LuMenu, LuX } from "react-icons/lu";
 
 const navLinks = [
   { label: "Inicio", href: "#inicio" },
@@ -19,7 +19,7 @@ const Navbar = () => {
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
         <a href="#inicio" className="flex items-center gap-2">
           <div className="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center text-black">
-            <Code2 className="w-5 h-5" strokeWidth={2.5} />
+            <LuCode className="w-5 h-5" />
           </div>
           <div className="leading-tight">
             <span className="text-white font-bold block">
@@ -46,7 +46,7 @@ const Navbar = () => {
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isOpen ? <LuX className="w-6 h-6" /> : <LuMenu className="w-6 h-6" />}
         </button>
       </nav>
 

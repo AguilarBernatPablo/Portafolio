@@ -1,60 +1,57 @@
 import heroImage from "../../assets/images/hero.png";
 
-export default function Hero() {
+const Hero = () => {
   return (
     <section
-      id="home"
-      className="min-h-screen bg-zinc-950 text-white flex items-center pt-24"
+      id="inicio"
+      className="min-h-screen flex items-center px-6 md:px-12 pt-24 pb-16 bg-zinc-950"
     >
-      <div className="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
-
-        {/* Texto */}
-
+      <div className="max-w-6xl mx-auto grid md:grid-cols-[45%_55%] gap-12 items-center w-full">
         <div>
+          <div className="inline-flex items-center gap-2 border border-zinc-800 bg-zinc-900/60 rounded-full px-4 py-1.5 mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+            <span className="text-orange-500 text-sm font-medium">
+              Disponibles para nuevos proyectos
+            </span>
+          </div>
 
-          <span className="inline-block bg-orange-500/10 border border-orange-500/20 text-orange-400 px-4 py-2 rounded-full text-sm font-medium">
-            🚀 NorthCode Studio
-          </span>
-
-          <h1 className="mt-8 text-5xl lg:text-7xl font-extrabold leading-tight">
-            Desarrollo de
-            <br />
-            <span className="text-orange-500">Software</span>
-            <br />
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+            Desarrollo de <span className="text-orange-500">Software</span>{" "}
             para empresas.
           </h1>
 
-          <p className="mt-8 text-zinc-400 text-lg leading-8 max-w-xl">
-            Diseñamos aplicaciones web, sistemas de gestión y soluciones digitales modernas utilizando las tecnologías más actuales del mercado.
+          <p className="text-zinc-400 mt-6 text-lg leading-relaxed max-w-lg">
+            Diseñamos aplicaciones web, sistemas de gestión y soluciones
+            digitales modernas utilizando las tecnologías más actuales del
+            mercado.
           </p>
 
-          <div className="flex gap-4 mt-12">
-
-            <button className="bg-orange-500 hover:bg-orange-600 transition px-8 py-4 rounded-xl font-semibold">
+          <div className="flex flex-wrap gap-4 mt-8">
+            <a
+              href="#proyectos"
+              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+            >
               Ver proyectos
-            </button>
-
-            <button className="border border-zinc-700 hover:border-orange-500 hover:text-orange-500 transition px-8 py-4 rounded-xl">
-              Contactanos
-            </button>
-
+            </a>
+            <a
+              href="#contacto"
+              className="border border-zinc-700 hover:border-orange-500 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+            >
+              Contáctanos
+            </a>
           </div>
-
         </div>
 
-        {/* Imagen */}
-
-        <div className="flex justify-center items-center">
-
+        <div className="flex justify-center md:justify-end">
           <img
             src={heroImage}
-            alt="NorthCode Studio"
-            className="w-full max-w-2xl object-contain drop-shadow-[0_0_60px_rgba(249,115,22,0.45)]"
+            alt="Ilustración de una notebook con código React y TypeScript"
+            className="w-full max-w-lg"
           />
-
         </div>
-
       </div>
     </section>
   );
-}
+};
+
+export default Hero;

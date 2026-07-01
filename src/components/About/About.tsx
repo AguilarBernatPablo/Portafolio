@@ -25,9 +25,9 @@ const services = [
 
 const About = () => {
   return (
-    <section id="nosotros" className="py-24 px-6 md:px-12 bg-zinc-900/40">
+    <section id="nosotros" className="py-20 px-6 md:px-12 bg-zinc-900/40">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-14">
           <div>
             <span className="text-orange-500 text-sm font-medium tracking-wide uppercase">
               Sobre nosotros
