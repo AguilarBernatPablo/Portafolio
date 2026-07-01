@@ -1,15 +1,32 @@
-import { useState, FormEvent } from "react";
-import { LuMail, LuSend } from "react-icons/lu";
+import { useRef, useState, FormEvent } from "react";
+import emailjs from "@emailjs/browser";
+import { LuCircleAlert, LuMail, LuSend } from "react-icons/lu";
 
 const Contact = () => {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formRef.current) return;
+
     setStatus("sending");
 
-    // TODO: integrar EmailJS o backend propio acá
-    setTimeout(() => setStatus("sent"), 1200);
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(() => {
+        setStatus("sent");
+        formRef.current?.reset();
+      })
+      .catch((error) => {
+        console.error("Error al enviar el mensaje:", error);
+        setStatus("error");
+      });
   };
 
   return (
@@ -27,6 +44,7 @@ const Contact = () => {
       </div>
 
       <form
+        ref={formRef}
         onSubmit={handleSubmit}
         className="max-w-xl mx-auto bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/60 rounded-2xl p-8 space-y-5 shadow-xl shadow-black/20"
       >
@@ -34,6 +52,7 @@ const Contact = () => {
           <label className="text-sm text-zinc-400 mb-1.5 block">Nombre</label>
           <input
             type="text"
+            name="from_name"
             required
             className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-lime-500 transition-colors"
             placeholder="Tu nombre"
@@ -44,6 +63,7 @@ const Contact = () => {
           <label className="text-sm text-zinc-400 mb-1.5 block">Correo</label>
           <input
             type="email"
+            name="from_email"
             required
             className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-lime-500 transition-colors"
             placeholder="tucorreo@ejemplo.com"
@@ -53,6 +73,7 @@ const Contact = () => {
         <div>
           <label className="text-sm text-zinc-400 mb-1.5 block">Mensaje</label>
           <textarea
+            name="message"
             required
             rows={4}
             className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-lime-500 transition-colors resize-none"
@@ -62,7 +83,7 @@ const Contact = () => {
 
         <button
           type="submit"
-          disabled={status !== "idle"}
+          disabled={status === "sending"}
           className="w-full flex items-center justify-center gap-2 bg-lime-500 hover:bg-lime-600 disabled:opacity-60 text-white font-medium py-3 rounded-lg transition-colors"
         >
           {status === "idle" && (
@@ -76,7 +97,18 @@ const Contact = () => {
               <LuMail className="w-4 h-4" /> ¡Mensaje enviado!
             </>
           )}
+          {status === "error" && (
+            <>
+              <LuCircleAlert className="w-4 h-4" /> Error, intentá de nuevo
+            </>
+          )}
         </button>
+
+        {status === "error" && (
+          <p className="text-red-400 text-sm text-center">
+            No se pudo enviar el mensaje. Probá de nuevo en unos minutos.
+          </p>
+        )}
       </form>
     </section>
   );
