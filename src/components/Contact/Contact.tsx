@@ -52,7 +52,7 @@ const Contact = () => {
           <label className="text-sm text-zinc-400 mb-1.5 block">Nombre</label>
           <input
             type="text"
-            name="from_name"
+            name="name"
             required
             className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-lime-500 transition-colors"
             placeholder="Tu nombre"
@@ -63,7 +63,7 @@ const Contact = () => {
           <label className="text-sm text-zinc-400 mb-1.5 block">Correo</label>
           <input
             type="email"
-            name="from_email"
+            name="email"
             required
             className="w-full bg-zinc-950/70 border border-zinc-800 rounded-lg px-4 py-2.5 text-white placeholder:text-zinc-600 focus:outline-none focus:border-lime-500 transition-colors"
             placeholder="tucorreo@ejemplo.com"
