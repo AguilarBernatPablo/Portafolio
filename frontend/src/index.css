@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #ffffff;
+  --color-surface: #f4f4f2;
+  --color-ink: #1f2b4d;
+  --color-muted: #5d6479;
+  --color-accent: #f7941d;
+  --color-night: #05070a;
+  --color-sand: #e3e1dc;
+
+  --font-display: "Young Serif", Georgia, serif;
+  --font-text: "Source Serif 4 Variable", Georgia, serif;
+
+  --text-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --text-body: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
+  --text-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --text-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+}
+
+:root {
+  color-scheme: light;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-text);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: 1.55;
+  font-optical-sizing: auto;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+a, button { touch-action: manipulation; }
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+::selection { background: var(--color-accent); color: var(--color-ink); }
+
+[id] { scroll-margin-top: 24px; }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Entrada de cada parte: solo se esconde si el script corre y si se permite movimiento */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.9s var(--ease-out),
+      transform 0.9s var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .js [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Las escenas del ventanal cambian como la luz */
+.scene {
+  opacity: 0;
+  transition: opacity 1.6s ease;
+}
+.scene.is-active { opacity: 1; }
+.scene .drift { animation: drift 24s ease-in-out infinite alternate; transform-box: fill-box; }
+@keyframes drift {
+  from { transform: translateX(-2%); }
+  to { transform: translateX(2%); }
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: var(--text-body);
+  text-decoration: none;
+  transition: transform 160ms var(--ease-out), background-color 200ms ease, color 200ms ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn-accent { background: var(--color-accent); color: var(--color-ink); }
+.btn-accent:hover { background: var(--color-ink); color: #fff; }
+.btn-ink { background: var(--color-ink); color: #fff; }
+.btn-ink:hover { background: var(--color-accent); color: var(--color-ink); }
+
+.link {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-thickness 160ms ease, color 160ms ease;
+}
+.link:hover { text-decoration-thickness: 3px; text-decoration-color: var(--color-accent); }
+
+/* Borde dentado del recibo */
+.slip {
+  clip-path: polygon(
+    0 0, 100% 0, 100% calc(100% - 12px),
+    95% 100%, 90% calc(100% - 12px), 85% 100%, 80% calc(100% - 12px), 75% 100%,
+    70% calc(100% - 12px), 65% 100%, 60% calc(100% - 12px), 55% 100%, 50% calc(100% - 12px),
+    45% 100%, 40% calc(100% - 12px), 35% 100%, 30% calc(100% - 12px), 25% 100%,
+    20% calc(100% - 12px), 15% 100%, 10% calc(100% - 12px), 5% 100%, 0 calc(100% - 12px)
+  );
+}
+.leader {
+  flex: 1;
+  min-width: 24px;
+  height: 4px;
+  margin: 0 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='4'%3E%3Ccircle cx='2' cy='2' r='1.6' fill='%235d6479'/%3E%3C/svg%3E");
+  background-size: 9px 4px;
+  background-repeat: repeat-x;
+}
+
+/* Cambio de ventana entre páginas */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 600ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene { transition: none; }
+  .scene .drift { animation: none; }
+  .btn:active { transform: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
