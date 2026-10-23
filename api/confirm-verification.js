@@ -1,0 +1,71 @@
+import jwt from "jsonwebtoken";
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+export default async function handler(req, res) {
+  if (req.method === "OPTIONS") {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    return res.status(200).end();
+  }
+
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  const { token, code } = req.body || {};
+  if (!token || !code) {
+    return res.status(400).json({ error: "Faltan datos de verificación" });
+  }
+
+  const missingEnv = [
+    "JWT_SECRET",
+    "EMAILJS_SERVICE_ID",
+    "EMAILJS_PUBLIC_KEY",
+    "EMAILJS_PRIVATE_KEY",
+    "EMAILJS_CONTACT_TEMPLATE_ID",
+  ].filter((key) => !process.env[key]);
+
+  if (missingEnv.length > 0) {
+    return res.status(500).json({
+      error: `Faltan variables de entorno: ${missingEnv.join(", ")}`,
+    });
+  }
+
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (payload.code !== code) {
+      return res.status(400).json({ error: "Código incorrecto" });
+    }
+
+    const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        service_id: process.env.EMAILJS_SERVICE_ID,
+        template_id: process.env.EMAILJS_CONTACT_TEMPLATE_ID,
+        user_id: process.env.EMAILJS_PUBLIC_KEY,
+        accessToken: process.env.EMAILJS_PRIVATE_KEY,
+        template_params: {
+          name: payload.name,
+          email: payload.email,
+          message: payload.message,
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      return res.status(500).json({ error: "No se pudo enviar el mensaje" });
+    }
+
+    return res.status(200).set(corsHeaders).json({ ok: true });
+  } catch (error) {
+    return res.status(400).json({ error: "Token inválido o vencido" });
+  }
+}
