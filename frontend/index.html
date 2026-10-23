@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pablo Aguilar Bernat · Desarrollador full stack</title>
     <meta name="description" content="Portafolio de Pablo Aguilar Bernat, desarrollador full stack y estudiante de Ingeniería en Sistemas en Paraná, Entre Ríos. Proyectos reales con React, TypeScript, Node.js y MongoDB." />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#0c0e13" />
+    <script>
+      // Aplica el tema guardado antes de pintar, para que no parpadee.
+      try {
+        if (localStorage.getItem("tema") === "light") {
+          document.documentElement.dataset.theme = "light";
+          document.querySelector('meta[name="theme-color"]').setAttribute("content", "#f7f5f0");
+        }
+      } catch (e) {}
+    </script>
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Pablo Aguilar Bernat · Desarrollador full stack" />
     <meta property="og:description" content="Sitios y sistemas web, de la base de datos a la última pantalla. Paraná, Entre Ríos." />
