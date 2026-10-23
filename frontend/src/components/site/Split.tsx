@@ -19,10 +19,10 @@ export default function Split({ first, children }: { first: SceneId; children: R
   return (
     <SceneContext.Provider value={setActive}>
       <div className="relative grid grid-cols-[minmax(0,1fr)] gap-3 p-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-        <div className="sticky top-0 z-0 h-[34svh] lg:order-2 lg:top-3 lg:h-[calc(100svh-1.5rem)]">
-          <Stage active={active} />
+        <div className="sticky top-3 z-0 h-[34svh] lg:order-2 lg:h-[calc(100svh-1.5rem)]">
+          <Stage active={active} first={first} />
         </div>
-        <div ref={column} className="relative z-10 -mt-3 bg-white pt-3 lg:order-1 lg:mt-0 lg:pt-0">
+        <div ref={column} className="relative z-10 -mt-3 rounded-t-[var(--radius-card)] bg-bg pt-3 lg:order-1 lg:mt-0 lg:rounded-none lg:pt-0">
           {children}
         </div>
       </div>

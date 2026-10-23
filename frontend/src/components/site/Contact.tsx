@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { site } from "../../data/site";
-import { scenes } from "./scenes";
+import { photos } from "../../data/photos";
 
 const reasons = [
   { id: "entrevista", label: "Una entrevista", body: "Hola Pablo, vi tu portafolio y me gustaría coordinar una entrevista para un puesto de desarrollo." },
@@ -15,14 +15,14 @@ type Status = { kind: "idle" | "sending" | "sent" } | { kind: "error"; message: 
 const API = import.meta.env.VITE_API_URL ?? "";
 
 const field =
-  "mt-2 block w-full bg-white px-4 py-3 text-body text-ink outline-none transition-shadow duration-200 focus-visible:shadow-[0_0_0_3px_var(--color-accent)]";
+  "mt-2 block w-full rounded-[var(--radius-field)] bg-raised px-4 py-3 text-body text-ink placeholder:text-muted outline-none transition-shadow duration-200 focus-visible:shadow-[0_0_0_3px_var(--color-accent)]";
 
 export default function Contact() {
   const [reason, setReason] = useState<ReasonId>("entrevista");
   const [message, setMessage] = useState<string>(reasons[0].body);
   const [edited, setEdited] = useState(false);
   const [status, setStatus] = useState<Status>({ kind: "idle" });
-  const Night = scenes.noche;
+  const night = photos.noche;
 
   const pick = (id: ReasonId) => {
     setReason(id);
@@ -56,17 +56,15 @@ export default function Contact() {
   const whatsapp = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`;
 
   return (
-    <section id="contacto" aria-labelledby="contacto-titulo" className="bg-sand px-6 py-32 sm:px-12 lg:py-40">
-      <div className="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-12 lg:gap-6">
+    <section id="contacto" aria-labelledby="contacto-titulo" className="px-3 pb-3">
+      <div className="mx-auto grid gap-14 rounded-[var(--radius-card)] bg-surface px-6 py-24 sm:px-12 lg:grid-cols-12 lg:gap-6 lg:py-32">
         <div className="lg:col-span-5">
           <h2 id="contacto-titulo" className="m-0 text-head" data-reveal>Escribime</h2>
           <p className="mt-8 max-w-[26ch] text-lead leading-[1.3]" data-reveal style={{ "--i": 1 } as React.CSSProperties}>
             Si buscás a alguien que se haga cargo de un sistema de punta a punta, hablemos.
           </p>
           <div className="mt-12 flex items-start gap-6" data-reveal style={{ "--i": 2 } as React.CSSProperties}>
-            <div className="relative hidden aspect-square w-28 shrink-0 overflow-hidden sm:block" aria-hidden="true">
-              <Night />
-            </div>
+            <img src={night.src} width={112} height={112} alt="" loading="lazy" className="hidden aspect-square w-28 shrink-0 rounded-[20px] object-cover sm:block" />
             <ul className="m-0 list-none space-y-1 p-0 text-body">
               <li><a className="link" href={`mailto:${site.email}`}>{site.email}</a></li>
               <li><a className="link" href={site.phoneHref}>{site.phoneLabel}</a></li>
@@ -78,7 +76,7 @@ export default function Contact() {
 
         <div className="lg:col-span-6 lg:col-start-7" data-reveal style={{ "--i": 3 } as React.CSSProperties}>
           {status.kind === "sent" ? (
-            <div className="bg-white p-8" role="status">
+            <div className="rounded-[var(--radius-card)] bg-raised p-8" role="status">
               <p className="m-0 font-display text-lead">Mensaje enviado. Gracias.</p>
               <p className="mt-3 text-body">Te respondo a la brevedad al email que dejaste.</p>
             </div>
@@ -90,7 +88,7 @@ export default function Contact() {
                   {reasons.map((x) => (
                     <label
                       key={x.id}
-                      className="inline-flex min-h-11 cursor-pointer items-center bg-white px-4 text-body transition-colors duration-200 hover:bg-surface has-[:checked]:bg-ink has-[:checked]:text-white has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-accent"
+                      className="inline-flex min-h-11 cursor-pointer items-center rounded-full bg-raised px-5 text-body transition-colors duration-200 hover:bg-bg has-[:checked]:bg-accent has-[:checked]:text-on-accent has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-accent"
                     >
                       <input type="radio" name="motivo" value={x.id} checked={reason === x.id} onChange={() => pick(x.id)} className="sr-only" />
                       {x.label}
@@ -134,13 +132,13 @@ export default function Contact() {
               </label>
 
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-                <button type="submit" className="btn btn-accent cursor-pointer border-0" disabled={status.kind === "sending"}>
+                <button type="submit" className="btn btn-accent" disabled={status.kind === "sending"}>
                   {status.kind === "sending" ? "Enviando…" : "Enviar mensaje"}
                 </button>
                 <a className="link text-body" href={whatsapp} target="_blank" rel="noreferrer">o mandalo por WhatsApp</a>
               </div>
 
-              <p className="mt-4 min-h-6 text-body text-[#9b1c1c]" aria-live="polite">
+              <p className="mt-4 min-h-6 text-body text-[#ff8a7a] [:root[data-theme=light]_&]:text-[#9b1c1c]" aria-live="polite">
                 {status.kind === "error" ? status.message : ""}
               </p>
             </form>
