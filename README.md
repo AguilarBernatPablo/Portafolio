@@ -1,21 +1,46 @@
-<<<<<<< HEAD
-# React + Vite
+# Portafolio · Pablo Aguilar Bernat
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Mi portafolio profesional: desarrollador full stack y estudiante de Ingeniería en Sistemas en Paraná, Entre Ríos.
 
-Currently, two official plugins are available:
+El sitio tiene tres páginas (Inicio, Proyectos y Cómo trabajo). Media pantalla queda fija como un ventanal que cambia de escena según la sección, y la otra media se lee con scroll lento y contenido que aparece de a poco.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Estructura
 
-## React Compiler
+```
+frontend/   Sitio en React 19 + TypeScript + Vite + Tailwind CSS 4
+backend/    API en Node.js + Express para el formulario de contacto
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Cómo correrlo
 
-## Expanding the Oxlint configuration
+```bash
+# API (puerto 3001)
+cd backend
+cp .env.example .env   # completar con los datos de EmailJS
+npm install
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-=======
-# Portafolio
-Somos Pablo Aguilar Bernat y Felipe Correa, analistas en sistemas especializados en desarrollo web y sistemas a medida para empresas y emprendedores. En este portafolio compartimos algunos de nuestros proyectos para que conozcas nuestra forma de trabajar, la calidad de nuestras soluciones y nuestra experiencia.
->>>>>>> a2a2ab632af9a4bdaa38debe51f6195e9432fd69
+# Sitio (puerto 5173, /api se redirige al backend)
+cd frontend
+npm install
+npm run dev
+```
+
+Tests del backend: `cd backend && npm test`.
+
+## Publicar en Vercel
+
+Dos proyectos de Vercel apuntando a este mismo repositorio:
+
+| Proyecto | Root Directory | Variables de entorno |
+| --- | --- | --- |
+| Sitio | `frontend` | `VITE_API_URL` = URL del proyecto del backend |
+| API | `backend` | `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_PUBLIC_KEY`, `EMAILJS_PRIVATE_KEY`, `FRONTEND_ORIGIN` = URL del sitio |
+
+En EmailJS hay que activar *Account › Security › Allow EmailJS API for non-browser applications*.
+
+## Ramas
+
+- `main`: lo publicado.
+- `develop`: integración.
+- `feature/*`: una rama por cambio (estructura, cada página).
